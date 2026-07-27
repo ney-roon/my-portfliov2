@@ -72,6 +72,7 @@ document.addEventListener("DOMContentLoaded", async function () {
     // Buttons
     document.getElementById("nextBtn").addEventListener("click", nextImage);
     document.getElementById("prevBtn").addEventListener("click", prevImage);
+    document.getElementById("closebtn").addEventListener("click", closePopup);
 
     // Keyboard controls
     document.addEventListener("keydown", function (e) {
