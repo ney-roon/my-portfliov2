@@ -1,0 +1,256 @@
+<!-- Admin-only page (Sammy logs in via admin-login.html): upload gallery images, approve/delete submitted portfolio links -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #6c63ff, #a29bfe);
+      color: #333;
+      padding-bottom: 40px;
+    }
+    a {
+      display: inline-block;
+      margin: 20px;
+      text-decoration: none;
+      color: #fff;
+      font-weight: bold;
+    }
+    h2 {
+      text-align: center;
+      color: #fff;
+      margin-top: 10px;
+    }
+    .top-controls {
+      text-align: center;
+      margin: 10px;
+    }
+    button {
+      background: #6c63ff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 5px;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #4b45d6;
+    }
+    input[type="file"] {
+      margin: 10px;
+      padding: 5px;
+    }
+    .panel {
+      padding: 20px;
+      margin: 20px auto;
+      max-width: 900px;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+    }
+    .panel h3 {
+      margin-top: 0;
+    }
+    .block-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 15px;
+    }
+    .block {
+      background: #f0f0f0;
+      padding: 15px;
+      border-radius: 8px;
+      max-width: 220px;
+      transition: transform 0.2s;
+    }
+    .block:hover {
+      transform: scale(1.02);
+    }
+    .block img {
+      max-width: 100%;
+      border-radius: 6px;
+      display: block;
+      margin-bottom: 8px;
+    }
+    .status-pending {
+      color: #b8860b;
+      font-weight: bold;
+    }
+    .status-approved {
+      color: #2e7d32;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <a href="index.html">← Back to Home</a>
+  <h2>Admin Dashboard</h2>
+  <div class="top-controls">
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <section class="panel">
+    <h3>My Gallery</h3>
+    <div>
+      <input type="file" id="imageInput" accept="image/*">
+      <button onclick="uploadGalleryImage()">Upload Image</button>
+    </div>
+    <div id="galleryList" class="block-grid"></div>
+  </section>
+
+  <section class="panel">
+    <h3>Community Submissions</h3>
+    <div id="submissionsList" class="block-grid"></div>
+  </section>
+
+  <script type="module">
+    import { supabase } from "./js/supabase-config.js";
+
+    // Toast message instead of alert
+    function showMessage(msg) {
+      const note = document.createElement("div");
+      note.innerText = msg;
+      note.style.position = "fixed";
+      note.style.bottom = "20px";
+      note.style.right = "20px";
+      note.style.background = "#6c63ff";
+      note.style.color = "#fff";
+      note.style.padding = "10px 20px";
+      note.style.borderRadius = "8px";
+      note.style.boxShadow = "0 4px 10px rgba(0,0,0,0.2)";
+      document.body.appendChild(note);
+      setTimeout(() => note.remove(), 3000);
+    }
+
+    // --- My Gallery ---
+    async function loadGalleryImages() {
+      const { data, error } = await supabase
+        .from("gallery_images")
+        .select("*")
+        .order("created_at", { ascending: false });
+      if (error) return showMessage(error.message);
+
+      const list = document.getElementById("galleryList");
+      list.innerHTML = "";
+      data.forEach(image => {
+        const item = document.createElement("div");
+        item.className = "block";
+        item.innerHTML = `
+          <img src="${image.image_url}" alt="${image.alt_text || ""}">
+          <button data-id="${image.id}" data-path="${image.image_url}">Delete</button>
+        `;
+        item.querySelector("button").addEventListener("click", () => deleteGalleryImage(image.id, image.image_url));
+        list.appendChild(item);
+      });
+    }
+
+    async function uploadGalleryImage() {
+      const fileInput = document.getElementById("imageInput");
+      const file = fileInput.files[0];
+      if (!file) return showMessage("No file selected!");
+
+      // Prefix with the current time so two uploads with the same filename never clash
+      const filePath = `${Date.now()}-${file.name}`;
+      const { error: uploadError } = await supabase.storage.from("gallery").upload(filePath, file);
+      if (uploadError) return showMessage(uploadError.message);
+
+      const { data } = supabase.storage.from("gallery").getPublicUrl(filePath);
+
+      const { error: insertError } = await supabase
+        .from("gallery_images")
+        .insert({ image_url: data.publicUrl, alt_text: file.name });
+      if (insertError) return showMessage(insertError.message);
+
+      fileInput.value = "";
+      showMessage("Image added!");
+      loadGalleryImages();
+    }
+
+    async function deleteGalleryImage(id, imageUrl) {
+      const { error } = await supabase.from("gallery_images").delete().eq("id", id);
+      if (error) return showMessage(error.message);
+
+      // Also remove the file from storage, using the path after the bucket's public URL prefix
+      const filePath = imageUrl.split("/gallery/")[1];
+      if (filePath) await supabase.storage.from("gallery").remove([filePath]);
+
+      showMessage("Image removed.");
+      loadGalleryImages();
+    }
+
+    // --- Community Submissions ---
+    async function loadSubmissions() {
+      const { data, error } = await supabase
+        .from("community_portfolios")
+        .select("*")
+        .order("submitted_at", { ascending: false });
+      if (error) return showMessage(error.message);
+
+      const list = document.getElementById("submissionsList");
+      list.innerHTML = "";
+      data.forEach(sub => {
+        const row = document.createElement("div");
+        row.className = "block";
+        const submittedDate = new Date(sub.submitted_at).toLocaleDateString();
+        row.innerHTML = `
+          <strong>${sub.name}</strong><br>
+          <p>${sub.bio || ""}</p>
+          <a href="${sub.notion_link}" target="_blank">View portfolio</a><br>
+          <span class="${sub.approved ? "status-approved" : "status-pending"}">
+            ${sub.approved ? "Approved" : "Pending"}
+          </span> · submitted ${submittedDate}<br>
+          ${sub.approved ? "" : `<button class="approve-btn">Approve</button>`}
+          <button class="delete-btn">Delete</button>
+        `;
+        if (!sub.approved) {
+          row.querySelector(".approve-btn").addEventListener("click", () => approveSubmission(sub.id));
+        }
+        row.querySelector(".delete-btn").addEventListener("click", () => deleteSubmission(sub.id));
+        list.appendChild(row);
+      });
+    }
+
+    async function approveSubmission(id) {
+      const { error } = await supabase.from("community_portfolios").update({ approved: true }).eq("id", id);
+      if (error) return showMessage(error.message);
+      showMessage("Portfolio approved - now live on the site!");
+      loadSubmissions();
+    }
+
+    async function deleteSubmission(id) {
+      const { error } = await supabase.from("community_portfolios").delete().eq("id", id);
+      if (error) return showMessage(error.message);
+      showMessage("Submission removed.");
+      loadSubmissions();
+    }
+
+    // --- Logout ---
+    function logout() {
+      supabase.auth.signOut().then(() => window.location.href = "admin-login.html");
+    }
+
+    // --- Require login before showing anything ---
+    async function init() {
+      if (!supabase) {
+        showMessage("Supabase isn't configured yet - add your project URL and anon key in js/supabase-config.js");
+        return;
+      }
+      const { data: { session } } = await supabase.auth.getSession();
+      if (!session) {
+        window.location.href = "admin-login.html";
+        return;
+      }
+      loadGalleryImages();
+      loadSubmissions();
+    }
+    init();
+
+    window.uploadGalleryImage = uploadGalleryImage;
+    window.logout = logout;
+  </script>
+</body>
+</html>

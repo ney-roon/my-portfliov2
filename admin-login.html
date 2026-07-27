@@ -1,0 +1,96 @@
+<!-- Login page for Sammy only (no public sign-up), leads to admin.html -->
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Login</title>
+  <style>
+    body {
+      margin: 0;
+      padding: 0;
+      background: url("assets/images/Logic is progressive.JPG") no-repeat center center fixed;
+      background-size: cover;
+      font-family: Arial, sans-serif;
+    }
+    .popup {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      background: rgba(0, 0, 0, 0.6);
+    }
+    .popup-content {
+      background: rgba(255, 255, 255, 0.95);
+      padding: 30px;
+      border-radius: 12px;
+      width: 350px;
+      text-align: center;
+      box-shadow: 0 8px 20px rgba(0, 0, 0, 0.3);
+      animation: fadeIn 0.3s ease;
+    }
+    input {
+      width: 90%;
+      padding: 10px;
+      margin: 10px 0;
+      border: 1px solid #ccc;
+      border-radius: 6px;
+    }
+    button {
+      margin: 10px;
+      padding: 10px 20px;
+      border: none;
+      border-radius: 6px;
+      background: #6c63ff;
+      color: white;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+    button:hover {
+      background: #4b45d6;
+    }
+    a.back-link {
+      display: inline-block;
+      margin-top: 10px;
+      color: #6c63ff;
+      text-decoration: none;
+      font-size: 14px;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+  </style>
+</head>
+<body>
+  <div class="popup">
+    <div class="popup-content">
+      <h2>Admin Login</h2>
+      <input id="email" type="email" placeholder="Email">
+      <input id="password" type="password" placeholder="Password">
+      <button onclick="login()">Log In</button>
+      <br>
+      <a class="back-link" href="index.html">← Back to site</a>
+    </div>
+  </div>
+
+  <script type="module">
+    import { supabase } from "./js/supabase-config.js";
+
+    async function login() {
+      if (!supabase) {
+        alert("Supabase isn't configured yet - add your project URL and anon key in js/supabase-config.js");
+        return;
+      }
+      const email = document.getElementById("email").value;
+      const password = document.getElementById("password").value;
+      const { error } = await supabase.auth.signInWithPassword({ email, password });
+      if (error) {
+        alert(error.message);
+        return;
+      }
+      window.location.href = "admin.html";
+    }
+
+    window.login = login;
+  </script>
+</body>
+</html>

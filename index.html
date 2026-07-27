@@ -1,99 +1,86 @@
+<!-- Public homepage: gallery, about, contact, and the community portfolio showcase -->
 <!DOCTYPE html>
 <html lang="en">
-    
+
     <head>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Sammy Nurrein's Art Portfolio</title>
-        <link rel="stylesheet" href="style.css?v=2">
+        <link rel="stylesheet" href="css/style.css?v=2">
         
 
     </head>
     <body>
-        <div class="container">
-        <header>
-            <h1> Welcome to my Art Portfolio</h1>
-            <p>Anime Art and more</p>
+        <header class="hero">
+          <div class="container hero-inner">
             <nav>
+                <span class="logo">Sammy Nurrein</span>
                 <ul>
                     <li><a href="#gallery">Gallery</a></li>
                     <li><a href="#about">About me</a></li>
                     <li><a href="#contact">Contact</a></li>
-                    <li><a href="portfolio.html">Community Portfolio</a></li>
+                    <li><a href="#communityShowcase">Community Portfolio</a></li>
                 </ul>
             </nav>
-            <div class="confetti-container">
-    <div class="confetti"></div>
-    <div class="confetti"></div>
-    <div class="confetti"></div>
-    <div class="confetti"></div>
-    <div class="confetti"></div>
-  </div>
-  <div id="videoPopup" class="video-popup">
-    <video id="introVideo" autoplay muted playsinline>
-    <source src="Images/popup.mp4" type="video/mp4">
-      Your browser does not support the video tag.
-    </video>
-  </div>
+            <div class="hero-content">
+                <h1>Welcome to my Art Portfolio</h1>
+                <p class="tagline">Anime Art and more</p>
+                <a href="#gallery" class="btn">View Gallery</a>
+            </div>
+            <img src="assets/images/Silence please Painting in progess.JPG" alt="Featured artwork by Sammy Nurrein" class="hero-image">
+          </div>
         </header>
-        
 
-      
-
-  <!-- Art grid (hidden initially) -->
-  <section id="gallery">
+  <!-- Art grid -->
+  <section id="gallery" class="section-base">
   <h2>Gallery</h2>
-  <div class="upload-widget">
-  <label for="addImage" class="widget-btn">➕ Add Image</label>
-  <input type="file" id="addImage" accept="image/*" hidden>
-</div>
   <div class="art-scroll-container">
     <div class="art-scroll-track">
-      <img src="Images/Silence please Painting in progess.JPG" alt="paintings" class="responsive-image">
-      <img src="Images/Pretty little baby.jpg" alt="portraits" class="responsive-image">
-      <img src="Images/Rowan Atikson.jpg" alt="portraits" class="responsive-image">
-      <img src="Images/Mr Octopus.jpg" alt="paintings" class="responsive-image">
-      <img src="Images/Puppet wall.jpg" alt="sketches" class="responsive-image">
-      <img src="Images/Miss Jib jib.jpg" alt="portraits" class="responsive-image">
-      <img src="Images/Sky fly.jpg" alt="paintings" class="responsive-image">
-      <img src="Images/Girls are pretty.jpg" alt="portraits" class="responsive-image">
-      <img src="Images/The Thinking Sketch.jpg" alt="sketches" class="responsive-image">
-      <img src="Images/Exhibition pieces.JPG" alt="paintings" class="responsive-image">
-      <img src="Images/Logic is better than emotion.JPG" alt="paintings" class="responsive-image">
-      <img src="Images/Logic is progressive.JPG" alt="paintings" class="responsive-image">
-      <img src="Images/Highly logical people are cold.JPG" alt="paintings" class="responsive-image">
-      <img src="Images/Angel girl.jpg" alt="portraits" class="responsive-image">
-      <img src="Images/Yin and yang.jpg" alt="sketches" class="responsive-image">
-      <img src="Images/Spider wall.jpg" alt="sketches" class="responsive-image">
-      <img src="Images/Friendly grim reaper.JPG" alt="paintings" class="responsive-image">
-      <img src="Images/Random Sketches.jpg" alt="sketches" class="responsive-image">
-      <img src="Images/Random Sketches 2.jpg" alt="sketches" class="responsive-image">
-      <img src="Images/Random Sketches 3.jpg" alt="sketches" class="responsive-image">
-      <img src="Images/Random Sketches 4.jpg" alt="sketches" class="responsive-image">
-      <img src="Images/Random Sketches 5.png" alt="sketches" class="responsive-image">
-      <img src="Images/Random Sketches 6.jpg" alt="sketches" class="responsive-image">
-      <img src="Images/Random Sketches 7.jpg" alt="sketches" class="responsive-image">
-      <img src="Images/Random Sketches 8.jpg" alt="sketches" class="responsive-image">
-      <img src="Images/Random Sketches 9.png" alt="sketches" class="responsive-image">
-      <img src="Images/Random Sketches 10.jpg" alt="sketches" class="responsive-image">
-      <img src="Images/Random Sketches 11.jpg" alt="sketches" class="responsive-image">
-      <img src="Images/Random Sketches 12.jpg" alt="sketches" class="responsive-image">
-      <img src="Images/Random Sketches 13.jpg" alt="sketches" class="responsive-image">
-      <img src="Images/Mkurugenzi.jpg" alt="portraits" class="responsive-image">
-      <img src="Images/The House.jpg" alt="paintings" class="responsive-image">
-      <img src="Images/Kachan Bakugo.png" alt="portraits" class="responsive-image">
-      <img src="Images/Izuku Midorya.png" alt="portraits" class="responsive-image">
-      <img src="Images/Lady Hinata.png" alt="portraits" class="responsive-image">
-      <img src="Images/Tamari.png" alt="portraits" class="responsive-image">
-      <img src="Images/Afro Dude.png" alt="portraits" class="responsive-image">
-      <img src="Images/All might.jpg" alt="portraits" class="responsive-image">
-      <img src="Images/Ochaco.jpg" alt="portraits" class="responsive-image">
-      <img src="Images/Uraraka.jpg" alt="portraits" class="responsive-image">
-      <img src="Images/Brotherly drawing.png" alt="sketches" class="responsive-image">
-      <img src="Images/Doodle.jpg" alt="sketches" class="responsive-image">
-      <img src="Images/Doodle 2.jpg" alt="sketches" class="responsive-image">
-      <img src="Images/Hood in me.jpg" alt="portraits" class="responsive-image">
-      <img src="Images/Warped city.JPG" alt="paintings" class="responsive-image">
+      <img src="assets/images/Silence please Painting in progess.JPG" alt="paintings" class="responsive-image">
+      <img src="assets/images/Pretty little baby.jpg" alt="portraits" class="responsive-image">
+      <img src="assets/images/Rowan Atikson.jpg" alt="portraits" class="responsive-image">
+      <img src="assets/images/Mr Octopus.jpg" alt="paintings" class="responsive-image">
+      <img src="assets/images/Puppet wall.jpg" alt="sketches" class="responsive-image">
+      <img src="assets/images/Miss Jib jib.jpg" alt="portraits" class="responsive-image">
+      <img src="assets/images/Sky fly.jpg" alt="paintings" class="responsive-image">
+      <img src="assets/images/Girls are pretty.jpg" alt="portraits" class="responsive-image">
+      <img src="assets/images/The Thinking Sketch.jpg" alt="sketches" class="responsive-image">
+      <img src="assets/images/Exhibition pieces.JPG" alt="paintings" class="responsive-image">
+      <img src="assets/images/Logic is better than emotion.JPG" alt="paintings" class="responsive-image">
+      <img src="assets/images/Logic is progressive.JPG" alt="paintings" class="responsive-image">
+      <img src="assets/images/Highly logical people are cold.JPG" alt="paintings" class="responsive-image">
+      <img src="assets/images/Angel girl.jpg" alt="portraits" class="responsive-image">
+      <img src="assets/images/Yin and yang.jpg" alt="sketches" class="responsive-image">
+      <img src="assets/images/Spider wall.jpg" alt="sketches" class="responsive-image">
+      <img src="assets/images/Friendly grim reaper.JPG" alt="paintings" class="responsive-image">
+      <img src="assets/images/Random Sketches.jpg" alt="sketches" class="responsive-image">
+      <img src="assets/images/Random Sketches 2.jpg" alt="sketches" class="responsive-image">
+      <img src="assets/images/Random Sketches 3.jpg" alt="sketches" class="responsive-image">
+      <img src="assets/images/Random Sketches 4.jpg" alt="sketches" class="responsive-image">
+      <img src="assets/images/Random Sketches 5.png" alt="sketches" class="responsive-image">
+      <img src="assets/images/Random Sketches 6.jpg" alt="sketches" class="responsive-image">
+      <img src="assets/images/Random Sketches 7.jpg" alt="sketches" class="responsive-image">
+      <img src="assets/images/Random Sketches 8.jpg" alt="sketches" class="responsive-image">
+      <img src="assets/images/Random Sketches 9.png" alt="sketches" class="responsive-image">
+      <img src="assets/images/Random Sketches 10.jpg" alt="sketches" class="responsive-image">
+      <img src="assets/images/Random Sketches 11.jpg" alt="sketches" class="responsive-image">
+      <img src="assets/images/Random Sketches 12.jpg" alt="sketches" class="responsive-image">
+      <img src="assets/images/Random Sketches 13.jpg" alt="sketches" class="responsive-image">
+      <img src="assets/images/Mkurugenzi.jpg" alt="portraits" class="responsive-image">
+      <img src="assets/images/The House.jpg" alt="paintings" class="responsive-image">
+      <img src="assets/images/Kachan Bakugo.png" alt="portraits" class="responsive-image">
+      <img src="assets/images/Izuku Midorya.png" alt="portraits" class="responsive-image">
+      <img src="assets/images/Lady Hinata.png" alt="portraits" class="responsive-image">
+      <img src="assets/images/Tamari.png" alt="portraits" class="responsive-image">
+      <img src="assets/images/Afro Dude.png" alt="portraits" class="responsive-image">
+      <img src="assets/images/All might.jpg" alt="portraits" class="responsive-image">
+      <img src="assets/images/Ochaco.jpg" alt="portraits" class="responsive-image">
+      <img src="assets/images/Uraraka.jpg" alt="portraits" class="responsive-image">
+      <img src="assets/images/Brotherly drawing.png" alt="sketches" class="responsive-image">
+      <img src="assets/images/Doodle.jpg" alt="sketches" class="responsive-image">
+      <img src="assets/images/Doodle 2.jpg" alt="sketches" class="responsive-image">
+      <img src="assets/images/Hood in me.jpg" alt="portraits" class="responsive-image">
+      <img src="assets/images/Warped city.JPG" alt="paintings" class="responsive-image">
     </div>
   </div>
 </section>
@@ -108,47 +95,44 @@
   </div>
 
 
-<section id="about">
-    <div class="about-me">
+<section id="about" class="section-alt">
+  <div class="about-content">
+    <img src="assets/images/Paintings/Painting 7.png" alt="Featured artwork by Sammy Nurrein" class="about-image">
+    <div class="about-text">
         <h2>About me</h2>
-        <p>Aspiring Artpreneur</p>
+        <p class="tagline">Aspiring Artpreneur</p>
         <p>Hello there and thank you for opening my Art-Portfolio. My name is Sammy Nurrein, a passionate artist specializing in Traditional Art.
            My work mainly explores Anime Themed Art, inspired by my love for Anime and cartoons. My goal is to create Art that people feel amazing to
-           look at and also resonate with.
-           
-           
-           I draw from Inspos/references that is, either Anime I admire, real life photos of people, Archictecture, nature and Imagination.
-           I believe that Art is subjective and resonates with people differently depending on ones position in life.
+           look at and also resonate with.</p>
 
-           
-           In my Journey, I am still trying to learn new skills of Art everyday because Art is very vast. I've had the opportunity 
-           to showcase my Art on Social Media pages like Instagram and Tiktok. I have also shared my Art, in my Art-club where we do weekly 
-           submissions on Friday. I am yet to work with Art-galleries and other mediums to market my Art and make a living out of it.
+        <p>I draw from Inspos/references that is, either Anime I admire, real life photos of people, Archictecture, nature and Imagination.
+           I believe that Art is subjective and resonates with people differently depending on ones position in life.</p>
 
-           
-           Art is a very great way of connecting with people. So whether you have arrived at my Portfolio to explore, discuss collaborations,
-            work together,commissions, buy an Art piece, or even if you want me to make you a custom piece. I invite you 
+        <p>In my Journey, I am still trying to learn new skills of Art everyday because Art is very vast. I've had the opportunity
+           to showcase my Art on Social Media pages like Instagram and Tiktok. I have also shared my Art, in my Art-club where we do weekly
+           submissions on Friday. I am yet to work with Art-galleries and other mediums to market my Art and make a living out of it.</p>
+
+        <p>Art is a very great way of connecting with people. So whether you have arrived at my Portfolio to explore, discuss collaborations,
+            work together,commissions, buy an Art piece, or even if you want me to make you a custom piece. I invite you
             to dive into my world. Feel free to reach out to me on Email or Phone Number below. I would love to connect with you, fellow Artist,
-            Creators and Dreamers.
-            
-            
-    
+            Creators and Dreamers.</p>
     </div>
+  </div>
 </section>
-<section id="contact">
+<section id="contact" class="section-base">
   <h2>Contact me</h2>
   <p>Email: sammynurrein@gmail.com</p>
   <p>Phone Number: 0113089951</p>
 
   <div class="contact-icons">
     <a href="https://www.instagram.com/art_neyroon" target="_blank">
-      <img src="Instagram-icon.svg.png" alt="Instagram" class="insta-icon">
+      <img src="assets/icons/Instagram-icon.svg.png" alt="Instagram" class="insta-icon">
     </a>
     <a href="https://wa.me/0113089951" target="_blank">
-      <img src="whatsapp-icon.png" alt="WhatsApp" class="whatsapp-icon">
+      <img src="assets/icons/whatsapp-icon.png" alt="WhatsApp" class="whatsapp-icon">
     </a>
     <a href="https://pixelpoetries.odoo.com/" target="_blank">
-      <img src="odoo-icon-filled-256.png" alt="Odoo" class="odoo-icon">
+      <img src="assets/icons/odoo-icon-filled-256.png" alt="Odoo" class="odoo-icon">
     </a>
   </div>
 <div class="form-container">
@@ -160,7 +144,7 @@
 </div>
 </section>
 
-<section id="moving-gallery">
+<section id="moving-gallery" class="section-alt">
   <h2>Moving Gallery</h2>
   <div class="paragraph-box">
   <p>The illustrations displayed below represent each individual member of Block Studio. 
@@ -171,40 +155,40 @@
   <div class="scroll-container">
     <div class="scroll-track">
     <a href="https://www.instagram.com/dijawija" target="_blank">
-      <img src="Images/Dija.png" alt="Dija">
+      <img src="assets/images/Dija.png" alt="Dija">
       <span class="overlay-text">Press me</span>
     </a>
     <a href="https://www.instagram.com/kid_fresh_hd" target="_blank">
-      <img src="Images/Brian.png" alt="Brian">
+      <img src="assets/images/Brian.png" alt="Brian">
       <span class="overlay-text">Press me</span>
     </a>
     <a href="https://www.instagram.com/charlotte.munoko" target="_blank">
-      <img src="Images/Charlotte.png" alt="Charlotte">
+      <img src="assets/images/Charlotte.png" alt="Charlotte">
       <span class="overlay-text">Press me</span>
     </a>
     <a href="#" target="_blank">
-      <img src="Images/Eric.png" alt="Eric">
+      <img src="assets/images/Eric.png" alt="Eric">
       <span class="overlay-text">Press me</span>
     </a>
     <a href="https://www.instagram.com/danniellamorgan" target="_blank">
-      <img src="Images/Danniella.png" alt="Danniella">
+      <img src="assets/images/Danniella.png" alt="Danniella">
     </a>
     <a href="#" target="_blank">
-      <img src="Images/Emmanuel.png" alt="Emmanuel">
+      <img src="assets/images/Emmanuel.png" alt="Emmanuel">
       <span class="overlay-text">Press me</span>
     </a>
     <a href="https://www.instagram.com/maxymize" target="_blank">
-      <img src="Images/maxx.png" alt="maxx">
+      <img src="assets/images/maxx.png" alt="maxx">
       <span class="overlay-text">Press me</span>
     </a>
     <a href="https://www.instagram.com/ruel.mov" target="_blank">
-      <img src="Images/Ruel.png" alt="Ruel">
+      <img src="assets/images/Ruel.png" alt="Ruel">
       <span class="overlay-text">Press me</span>
     </a>
   </div>
 </div>
 </section>
-<section id="communityShowcase">
+<section id="communityShowcase" class="section-base">
   <h2>Community Portfolios</h2>
   <p id="portfolioCount"></p>
   <div id="portfolioList"></div>
@@ -227,13 +211,43 @@
       <li>Share here</li>
     </ol>
   </div>
+
+  <!-- Submit your own link - stays hidden from the public list until Sammy approves it -->
+  <div class="submission-form">
+    <h3>Share Your Portfolio</h3>
+    <form id="portfolioSubmitForm">
+      <input type="text" id="submitName" placeholder="Your name" maxlength="60" required>
+      <textarea id="submitBio" placeholder="A short description of you as an artist" maxlength="200" rows="3"></textarea>
+      <input type="url" id="submitLink" placeholder="Your published Notion link" maxlength="300" required>
+      <p class="field-hint">
+        Needs to be a <strong>"Publish to web"</strong> link, not a regular share link.
+        In Notion: open your page → <strong>Share</strong> (top right) → <strong>Publish</strong> →
+        turn on <strong>"Publish to web"</strong> → copy that link (it looks like
+        <em>yourname.notion.site/...</em>).
+      </p>
+      <button type="submit" class="btn">Submit</button>
+    </form>
+    <p id="submitStatus"></p>
+  </div>
 </section>
 
+
+<footer class="site-footer">
+  <div class="footer-icons">
+    <a href="https://www.instagram.com/art_neyroon" target="_blank">
+      <img src="assets/icons/Instagram-icon.svg.png" alt="Instagram">
+    </a>
+    <a href="https://wa.me/0113089951" target="_blank">
+      <img src="assets/icons/whatsapp-icon.png" alt="WhatsApp">
+    </a>
+  </div>
+  <p>&copy; <span id="footerYear"></span> Sammy Nurrein. All rights reserved. · <a href="admin-login.html" class="admin-link">Admin</a></p>
+</footer>
 
 <button id="backToTop">↑ Top</button>
 </body>
 
-<script src="script.js"></script>
+<script type="module" src="js/script.js"></script>
 </html>
     
 
