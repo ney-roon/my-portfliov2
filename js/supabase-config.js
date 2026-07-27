@@ -10,8 +10,8 @@ import { createClient } from "https://cdn.jsdelivr.net/npm/@supabase/supabase-js
 
 // TODO: paste your Project URL and anon public key here.
 // Find them in your Supabase project: Settings > API.
-const SUPABASE_URL = "";
-const SUPABASE_ANON_KEY = "";
+const SUPABASE_URL = https://facuiyuhotkkpssohrrd.supabase.co;
+const SUPABASE_ANON_KEY = eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImZhY3VpeXVob3Rra3Bzc29ocnJkIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODUxNTMwNzYsImV4cCI6MjEwMDcyOTA3Nn0.ebfdMwXD4cmoV87w_g0UAbSzgjpyJ6bkbm7LmKa5CbU;
 
 const isConfigured = Boolean(SUPABASE_URL && SUPABASE_ANON_KEY);
 
